@@ -16,7 +16,7 @@ node {
   
         docker.image('eshnil/test-jenkins:latest').withRun('-p 8787:8080') { c ->
         /* Wait until mysql service is up */
-        sh 'sh /usr/local/bin/wget 0.0.0.0:8787'
+            sh 'sh ${which wget} 0.0.0.0:8787'
         /* Run some tests which require MySQL */
         sh 'make check'
     }
