@@ -14,7 +14,7 @@ node {
 
     stage('Test image') {
   
-        docker.image('eshnil/test-jenkins:4').withRun('
+        docker.image('eshnil/test-jenkins').withRun('
                                            ' -p 8888:8080') { c ->
         /* Wait until mysql service is up */
         sh 'wget 0.0.0.0:8888'
