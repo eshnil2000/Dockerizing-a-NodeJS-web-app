@@ -14,7 +14,13 @@ node {
 
     stage('Test image') {
   
-
+        docker.image('eshnil/test-jenkins:"${env.BUILD_NUMBER}"').withRun('
+                                           ' -p 8888:8080') { c ->
+        /* Wait until mysql service is up */
+        sh 'wget 0.0.0.0:8888'
+        /* Run some tests which require MySQL */
+        sh 'make check'
+    }
         app.inside {
             sh 'echo "Tests passed"'
         }
